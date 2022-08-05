@@ -2,7 +2,7 @@
 
 DecayFreq<-function(ICED_normalized_path, resolution="100000"){
 
-files<-dir(input, pattern=paste0("_",resolution,_iced.matrixCIS.txt"))
+files<-dir(input, pattern=paste0("_",resolution,"_iced.matrixCIS.txt"))
 
 for (i in 1:length(files)){
 # iterate through the different files:
