@@ -1,0 +1,28 @@
+#!/bin/bash
+##
+#SBATCH -J genenrich
+#SBATCH -n 8
+#SBATCH --mem=60G
+#SBATCH --ntasks-per-node=40
+
+
+out=/analysis/ATAC-seq
+Genrich=/gpfs/data/fs71524/SergioEG/tools/Genrich/Genrich
+
+IN=$out
+OUT=$out/0290821.ATACseq.Genrich
+
+mkdir $OUT
+
+list1=$IN/files.txt
+list2=$IN/filenames.txt
+
+$Genrich -t $IN/cKO_1_Bic.N.sort.bam,$IN/cKO_2_Bic.N.sort.bam,$IN/cKO_3_Bic.N.sort.bam -o $OUT/ckoBIC.narrowPeak -r -j
+
+$Genrich -t $IN/cKO_1_NBQX.N.sort.bam,$IN/cKO_2_NBQX.N.sort.bam,$IN/cKO_3_NBQX.N.sort.bam -o $OUT/ckoNBQX.narrowPeak -r -j
+
+$Genrich -t $IN/flx_1_NBQX.N.sort.bam,$IN/flx_2_NBQX.N.sort.bam,$IN/flx_3_NBQX.N.sort.bam -o $OUT/flxNBQX.narrowPeak -r -j
+
+$Genrich -t $IN/flx_1_Bic.N.sort.bam,$IN/flx_2_Bic.N.sort.bam,$IN/flx_3_Bic.N.sort.bam -o $OUT/flxBIC.narrowPeak -r -j
+
+$Genrich -t $IN/flx_1_Bic.N.sort.bam,$IN/flx_2_Bic.N.sort.bam,$IN/flx_3_Bic.N.sort.bam,$IN/flx_1_NBQX.N.sort.bam,$IN/flx_2_NBQX.N.sort.bam,$IN/flx_3_NBQX.N.sort.bam,$IN/cKO_1_NBQX.N.sort.bam,$IN/cKO_2_NBQX.N.sort.bam,$IN/cKO_3_NBQX.N.sort.bam,$IN/cKO_1_Bic.N.sort.bam,$IN/cKO_2_Bic.N.sort.bam,$IN/cKO_3_Bic.N.sort.bam -o $OUT/consensusGenrich.narrowPeak -r -j
