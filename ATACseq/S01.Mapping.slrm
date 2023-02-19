@@ -1,6 +1,6 @@
 #!/bin/bash
 ##
-#SBATCH -J atacseq.test
+#SBATCH -J 
 #SBATCH -n 8
 #SBATCH --mem=60G
 #SBATCH --ntasks-per-node=40
