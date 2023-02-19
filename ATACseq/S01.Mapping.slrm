@@ -11,6 +11,7 @@ bwa=/tools/bwa/
 samtools=/tools/samtools-1.11/samtools
 index=/mouse/GRCm38.p6.vM25/GRCm38.p6.genome.fa
 OUT=/analysis/ATAC-seq
+bamCoverage=/gpfs/data/fs71524/SergioEG/tools/deepTools/bin/bamCoverage
 
 mkdir $OUT
 
@@ -23,7 +24,7 @@ find $in -name \*.fq -printf '%f\n' | cut -d"." -f1 | sort | uniq > $OUT/filenam
 list1=$OUT/files.txt
 list2=$OUT/filenames.txt
 
-# Run a loop:
+# Run a loop for mapping, sorting, indexing and create a bigwig:
 paste -- "$list1" "$list2" |
 while IFS=$'\t' read -r file1 file2 rest; do
 
@@ -31,4 +32,5 @@ $bwa mem -t 40 $index $file1.R1.fq $file1.R2.fq > $OUT/$file2.sam
 $samtools view -q 30 -b -S -o $OUT/$file2.bam $OUT/$file2.sam
 $samtools sort $OUT/$file2.bam -o $OUT/$file2.sort.bam
 $samtools index $OUT/$file2.sort.bam
+$bamCoverage -b $OUT/$file2.sort.bam -o $OUT/$file2.sort.bw -p max
 done
