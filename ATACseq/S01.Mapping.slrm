@@ -11,7 +11,7 @@ bwa=/tools/bwa/
 samtools=/tools/samtools-1.11/samtools
 index=/mouse/GRCm38.p6.vM25/GRCm38.p6.genome.fa
 OUT=/analysis/ATAC-seq
-bamCoverage=/gpfs/data/fs71524/SergioEG/tools/deepTools/bin/bamCoverage
+bamCoverage=/tools/deepTools/bin/bamCoverage
 
 mkdir $OUT
 
