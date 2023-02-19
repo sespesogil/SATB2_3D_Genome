@@ -10,7 +10,7 @@ out=/analysis/ATAC-seq
 Genrich=/gpfs/data/fs71524/SergioEG/tools/Genrich/Genrich
 
 IN=$out
-OUT=$out/0290821.ATACseq.Genrich
+OUT=$out/genEnrich
 
 mkdir $OUT
 
