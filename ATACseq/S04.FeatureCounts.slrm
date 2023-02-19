@@ -1,0 +1,30 @@
+#!/bin/bash
+##
+#SBATCH -J featureCOunts
+#SBATCH -n 8
+#SBATCH --mem=60G
+#SBATCH --ntasks-per-node=40
+
+
+out=/analysis/ATAC-seq/genEnrich
+
+LIB1=/analysis/ATAC-seq/cKO_1_Bic.sort.bam
+LIB2=/analysis/ATAC-seq/cKO_1_NBQX.sort.bam
+LIB3=/analysis/ATAC-seq/cKO_2_Bic.sort.bam
+LIB4=/analysis/ATAC-seq/cKO_2_NBQX.sort.bam
+LIB5=/analysis/ATAC-seq/KO_3_Bic.sort.bam
+LIB6=/analysis/ATAC-seq/cKO_3_NBQX.sort.bam
+LIB7=/analysis/ATAC-seq/flx_1_Bic.sort.bam
+LIB8=/analysis/ATAC-seq/flx_1_NBQX.sort.bam
+LIB9=/analysis/ATAC-seq/flx_2_Bic.sort.bam
+LIB10=/analysis/ATAC-seq/flx_2_NBQX.sort.bam
+LIB11=/analysis/ATAC-seq/flx_3_Bic.sort.bam
+LIB12=/analysis/ATAC-seq/flx_3_NBQX.sort.bam
+
+mkdir $out
+
+SAF1=$out/consensus.byrep.GenEnrich.saf
+
+featureCOUNTS=/tools/subread-2.0.1-source/bin/featureCounts
+
+$featureCOUNTS -s 0 -F SAF --ignoreDup --minOverlap 25 -Q 1 -T 4 -a $SAF1 -O -o $out/total_counts.txt $LIB1 $LIB2 $LIB3 $LIB4 $LIB5 $LIB6 $LIB7 $LIB8 $LIB9 $LIB10 $LIB11 $LIB12
