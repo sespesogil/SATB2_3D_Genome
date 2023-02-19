@@ -1,0 +1,21 @@
+#!/bin/sh
+#SBATCH -N 1
+#SBATCH --partition=
+#SBATCH --qos=
+#SBATCH --mem=250G
+#SBATCH --job-name=
+
+# Conda environment for Deeptools:
+source activate tools/DeepTools
+
+samtools=/tools/samtools-1.11/samtools
+
+# Files within folder:
+cd /analysis/ATACseq
+# Compute matrix to a reference-point and scale-regions
+computeMatrix reference-point -S cKO_1_Bic.sort.bw cKO_1_NBQX.sort.bw cKO_2_Bic.sort.bw cKO_2_NBQX.sort.bw cKO_3_Bic.sort.bw cKO_3_NBQX.sort.bw flx_1_Bic.sort.bw flx_1_NBQX.sort.bw flx_2_Bic.sort.bw flx_2_NBQX.sort.bw flx_3_Bic.sort.bw flx_3_NBQX.sort.bw -R /mouse/genome.100kb.bed -a 1000 -b 1000 -o /analysis/DeepTools_QC/Reference100.gz
+computeMatrix scale-regions -S cKO_1_Bic.sort.bw cKO_1_NBQX.sort.bw cKO_2_Bic.sort.bw cKO_2_NBQX.sort.bw cKO_3_Bic.sort.bw cKO_3_NBQX.sort.bw flx_1_Bic.sort.bw flx_1_NBQX.sort.bw flx_2_Bic.sort.bw flx_2_NBQX.sort.bw flx_3_Bic.sort.bw flx_3_NBQX.sort.bw -R /mouse/genome.0.5kb.bed -a 1000 -b 1000 -o /analysis/DeepTools_QC/Scaled.gz
+
+plotCorrelation -in /analysis/DeepTools_QC/Reference100.npz --corMethod spearman --skipZeros --plotTitle "Spearman Correlation of Read Counts" --whatToPlot heatmap --colorMap RdYlBu --plotNumbers -o /analysis/DeepTools_QC/heatmap_SpearmanCorr_readCountsv2.pdf --zMin 0.5
+plotCorrelation -in /analysis/DeepTools_QC/Reference100.npz --corMethod pearson --skipZeros --plotTitle "Pearson Correlation of Read Counts" --whatToPlot heatmap --colorMap RdYlBu --plotNumbers -o /analysis/DeepTools_QC/heatmap_PearsonCorr_readCountsv2.pdf --zMin 0.5
+
