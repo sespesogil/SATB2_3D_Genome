@@ -9,7 +9,7 @@
 in=/ATAC_raw/raw_data/
 bwa=/tools/bwa/
 samtools=/tools/samtools-1.11/samtools
-index=
+index=/mouse/GRCm38.p6.vM25/GRCm38.p6.genome.fa
 OUT=/analysis/ATAC-seq
 
 mkdir $OUT
