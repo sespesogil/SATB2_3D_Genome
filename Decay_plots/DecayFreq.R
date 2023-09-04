@@ -1,4 +1,8 @@
-
+#' Function to extract and aggregate interaction frequencies based in distance
+#' @ICED_normalized_path Indicate cis bedfile interactions frequencies path
+#' @resolution Indicate corresponding resolution
+#' @author sergio.espeso-gil
+#' @export 
 
 DecayFreq<-function(ICED_normalized_path, resolution="100000"){
 
