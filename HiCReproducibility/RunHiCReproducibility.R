@@ -5,7 +5,7 @@
 library(strawr)
 library(hicrep)
 
-source("/gpfs/data/fs71524/SergioEG/scripts/HiCPro/HiCRep/HiCreproducibility.R")
+source("./HiCreproducibility.R")
 
 chromosomes<-c("1","2","3","4","5","6","7")   # select desidered chromosomes 
 
