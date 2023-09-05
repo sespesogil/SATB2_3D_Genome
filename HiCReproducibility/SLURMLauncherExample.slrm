@@ -12,5 +12,5 @@ module load gcc/9.1.0-gcc-4.8.5-mj7s6dg
 RSCRIPT=./R/bin/Rscript
 in=./HiCRep
 
-$RSCRIPT $in/
+$RSCRIPT $in/RunHiCReproducibility.R
 
