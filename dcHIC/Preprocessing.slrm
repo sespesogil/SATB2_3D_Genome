@@ -1,0 +1,46 @@
+#!/bin/bash
+##
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=48
+#SBATCH -J dcHiC
+
+
+JUICEBOX=/scripts/juicer_tools.1.9.9_jcuda.0.8.jar
+out=/analysis/dcHIC/ckoBIC_rep1
+hicfile=ckoBICrep1.allValidPairs.hic
+preprocessing=/tools/dcHiC/dchic/preprocess.py
+sizes=/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes
+
+samples=("1" "2" "3" "4" "5" "6" "7" "8" "9" "10" "11" "12" "13" "14" "15" "16" "17" "18" "19" "X")
+
+length=${#samples[@]}
+echo ${length}
+
+for (( i=0; i<${length}; i++ ))
+        do
+        varname=${samples[${i}]}
+        cd $out
+        java -jar $JUICEBOX pearsons NONE $out/$hicfile $varname BP 100000 $out/chr.$varname.pearsons_100Kb.txt -p # pearsons_100Kb.txt is the O/E correlation of chr3
+done
+
+cd $out
+python $preprocessing -input chr.1.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 1
+python $preprocessing -input chr.2.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 2
+python $preprocessing -input chr.3.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 3
+python $preprocessing -input chr.4.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 4
+python $preprocessing -input chr.5.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 5
+python $preprocessing -input chr.6.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 6
+python $preprocessing -input chr.7.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 7
+python $preprocessing -input chr.8.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 8
+python $preprocessing -input chr.9.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 9
+python $preprocessing -input chr.10.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 10
+python $preprocessing -input chr.11.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 11
+python $preprocessing -input chr.12.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 12
+python $preprocessing -input chr.13.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 13
+python $preprocessing -input chr.14.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 14
+python $preprocessing -input chr.15.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 15
+python $preprocessing -input chr.16.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 16
+python $preprocessing -input chr.17.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 17
+python $preprocessing -input chr.18.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 18
+python $preprocessing -input chr.19.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix 19
+python $preprocessing -input chr.X.pearsons_100Kb.txt -mode 1 -genomeFile /gpfs/data/fs71524/SergioEG/resources/genomes/mouse/GRCm38.p6.vM25/mm10.chrom.sizes -res 100000 -prefix X
