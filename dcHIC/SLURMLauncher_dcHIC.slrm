@@ -1,0 +1,9 @@
+#!/bin/bash
+##
+#SBATCH -N 1
+#SBATCH --ntasks-per-node=48
+#SBATCH -J dcHiC
+
+dchic=/tools/dcHiC/dchic/dchic.py
+
+python $dchic -res 100000 -inputFile input.txt -chrFile chr.txt -input 2 -alignData /genomes/mouse/GRCm38.p6.vM25/dcHiC -genome mm10 -blacklist genomes/mouse/GRCm38.p6.vM25/mm10blacklist_sorted.bed
