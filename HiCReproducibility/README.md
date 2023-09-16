@@ -8,4 +8,4 @@ This repo contains the main function, running script and SLURM launcher example.
 
 ### Input: 
 
-- Juicebox hic files: they can be produced using [hicpro2juicebox.sh](https://github.com/nservant/HiC-Pro/blob/master/bin/utils/hicpro2juicebox.sh) script. 
+- Juicebox hic files: they can be produced using [hicpro2juicebox.sh](https://github.com/nservant/HiC-Pro/blob/master/bin/utils/hicpro2juicebox.sh) script. An example have been added [here](https://github.com/sespesogil/SATB2_3D_Genome/tree/main/HiCReproducibility/InputGeneration)
