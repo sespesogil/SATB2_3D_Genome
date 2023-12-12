@@ -1,0 +1,13 @@
+#!/bin/bash
+##
+#SBATCH -N 1
+#SBATCH -J Chrom3D
+
+
+source activate /tools/chrom3D
+module load boost/1.72.0-gcc-10.2.0-jlf5edv
+
+Chrom3d=/tools/Chrom3D/Chrom3D
+out=/Chrom3D/cKO_BIC_TADs50kb_NCHG2/cKO_BIC.inter_intra.autosomes.diploid.gtrack
+
+$Chrom3D -o $out/cKO_BIC.inter_intra.autosomes.diploid.cmm -r 3.0 -n 1000000 -l 5000 --nucleus $out/cKO_BIC.inter_intra.autosomes.diploid.gtrack
