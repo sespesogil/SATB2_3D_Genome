@@ -8,7 +8,7 @@
  
 # Installation 
 
-´´´conda environment
+```conda environment
 
 conda create --prefix ./chrom3D python=2.7.17
 
@@ -19,4 +19,4 @@ conda install -c bioconda statsmodels
 conda install -c bioconda bedtools 
 conda install -c bioconda ggplot2 
 
-module load boost/1.72.0-gcc-10.2.0-jlf5edv´´´
+module load boost/1.72.0-gcc-10.2.0-jlf5edv```
