@@ -3,7 +3,7 @@
 3D modelling was computed using: 
 
 - 1. [https://github.com/sespesogil/automat_chrom3D](https://github.com/sespesogil/automat_chrom3D) : generation of Gtracks need to run [Chrom3D](https://github.com/Chrom3D/Chrom3D)
-- 2. Chrom3D run: script shows example run for one of the samples. Briefly, Chrom3D was run with the nucleus parameter set, with a radius of 3 µm for 1 million iterations: -r 3.0 -n 1000000 -l 5000 --nucleus.
+- 2. Chrom3D run: SLURM_Chrom3D.slrm script shows example run for one of the samples. Briefly, Chrom3D was run with the nucleus parameter set, with a radius of 3 µm for 1 million iterations: -r 3.0 -n 1000000 -l 5000 --nucleus.
 - 3. [https://github.com/sespesogil/automat_chrom3D_colors](https://github.com/sespesogil/automat_chrom3D_colors): used to map regions of interest.
  
 # Installation 
