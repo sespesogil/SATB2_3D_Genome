@@ -2,8 +2,4 @@
 
 Repository code used in Wahl et al.2022. 
 
-# Index
-
-## 1) ATAC-seq analysis
-
 
