@@ -1,6 +1,6 @@
 # Enrich permutate 
 
-Scripts to run permutation analysis for both human an mouse. 
+Scripts to run permutation analysis for both human and mouse. 
 
 # Parameters:
 
